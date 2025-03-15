@@ -1,18 +1,32 @@
 import React from "react";
-import "./styles.css";
+import styles from "./Modal.module.css";
 
-type Props = {
+interface ModalProps {
   isOpen: boolean;
-  close: () => void;
-};
+  isEditing: boolean;
+  onClose: () => void;
+  onSave: () => void
+  children: React.ReactNode;
+}
 
-function Modal({ isOpen, close }: Props) {
-  if (!isOpen) return;
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSave, isEditing, children }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="overlay">
-      <div onClick={close} className="content"></div>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modal}>
+        {children}
+        <div className={styles.buttonContainer}>
+          <button className={styles.cancelButton} onClick={onClose}>
+            CANCEL
+          </button>
+          <button onClick={onSave} className={styles.applyButton}>
+            {isEditing ? "SAVE" : "APPLY"}
+          </button>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Modal;

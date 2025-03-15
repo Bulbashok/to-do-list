@@ -1,93 +1,64 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Modal from "./components/Modal";
-import Form from "./components/Form";
-import Item from "./components/Item";
+import React, { useState } from "react";
+import styles from "./App.module.css";
+import TaskList from "./components/TaskList/TaskList";
+import { TaskProvider } from "./context/TaskContext";
+import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
+// import { ThemeContext } from "./context/ThemeContext";
+// import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
 
-const init = [
-  { state: true, text: "помыть маму" },
-  { state: false, text: "сварить кашу" },
-];
+const App: React.FC = () => {
+  const [filter, setFilter] = useState<"All" | "Completed" | "Incomplete">("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  // const { isDarkMode } = useContext(ThemeContext)!;
 
-type Data = { state: boolean; text: string }[];
-
-const getData = () =>
-  new Promise<Data>((res) => {
-    setTimeout(() => {
-      res(init);
-    }, 2000);
-  });
-
-function App() {
-  const [loading, setLoading] = useState(false);
-  const [toDoListData, setToDoListData] = useState<Data>(
-    []
-  );
-  const [isOpen, setOpen] = useState(false);
-
-  const addElement = (value: string) => {
-    if (!value) return;
-
-    const newItem = { state: false, text: value };
-    setToDoListData([...toDoListData, newItem]);
+  const handleFilterChange = (newFilter: "All" | "Completed" | "Incomplete") => {
+    setFilter(newFilter);
+    setIsFilterOpen(false);
   };
 
-  const onComplete = (index: number) => {
-    const dataIndex = toDoListData[index];
-    dataIndex.state = !dataIndex.state;
-
-    setToDoListData([...toDoListData]);
-  };
-
-  const onChange = () => {};
-
-  const getAsyncData = async () => {
-    setLoading(true);
-    try {
-      const data = await getData();
-      setToDoListData(data);
-    } catch {
-      console.log("error");
-    } finally {
-      setLoading(false);
+  const getFilterButtonText = () => {
+    switch (filter) {
+      case "All":
+        return "ALL";
+      case "Completed":
+        return "COMPLETED";
+      case "Incomplete":
+        return "INCOMPLETE";
     }
   };
 
-  useEffect(() => {
-    // setLoading(true);
-    // getData()
-    //   .then((data) => {
-    //     setToDoListData(data);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-
-    getAsyncData();
-  }, []);
-
   return (
-    <>
-      <div>
-        <h1>To-do-List</h1>
-        <Form onSubmit={addElement} />
-        <p></p>
-        <button onClick={() => setOpen(true)}>open</button>
-        {loading && "Loading..."}
-        {toDoListData.map((todo, i) => {
-          return (
-            <Item
-              text={todo.text}
-              checked={todo.state}
-              onComplete={() => onComplete(i)}
-              onChange={() => onChange()}
-            />
-          );
-        })}
+    <TaskProvider>
+      <div className={styles.container}>
+        <h1 className={styles.title}>TODO LIST</h1>
+        <div className={styles.wrapper}>
+          <input
+            type="text"
+            placeholder="Search note..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.searchInput}
+          />
+          <div className={styles.filterContainer}>
+            <button onClick={() => setIsFilterOpen(!isFilterOpen)} className={styles.filterButton}>
+            {getFilterButtonText()}
+            </button>
+            {isFilterOpen && (
+              <div className={styles.filterDropdown}>
+                <button onClick={() => handleFilterChange("All")}>All</button>
+                <button onClick={() => handleFilterChange("Completed")}>Completed</button>
+                <button onClick={() => handleFilterChange("Incomplete")}>Incomplete</button>
+              </div>
+            )}
+          </div>
+          {/* <ThemeToggleButton/> */}
+        </div>
+        <TaskList filter={filter} searchQuery={searchQuery} />
+        <AddTaskForm />
       </div>
-      <Modal isOpen={isOpen} close={() => setOpen(false)} />
-    </>
+    </TaskProvider>
   );
-}
+};
 
 export default App;

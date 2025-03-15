@@ -1,0 +1,14 @@
+.themeToggleButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
+  
+  .themeToggleButton:hover {
+    opacity: 0.8;
+  }
