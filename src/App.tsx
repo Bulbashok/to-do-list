@@ -17,17 +17,6 @@ const App: React.FC = () => {
     setIsFilterOpen(false);
   };
 
-  const getFilterButtonText = () => {
-    switch (filter) {
-      case "All":
-        return "ALL";
-      case "Completed":
-        return "COMPLETED";
-      case "Incomplete":
-        return "INCOMPLETE";
-    }
-  };
-
   return (
     <TaskProvider>
       <div className={styles.container}>
@@ -42,7 +31,7 @@ const App: React.FC = () => {
           />
           <div className={styles.filterContainer}>
             <button onClick={() => setIsFilterOpen(!isFilterOpen)} className={styles.filterButton}>
-            {getFilterButtonText()}
+            {filter.toUpperCase()}
             </button>
             {isFilterOpen && (
               <div className={styles.filterDropdown}>

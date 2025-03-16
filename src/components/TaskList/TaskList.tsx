@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { TaskContext } from '../../context/TaskContext';
-import TaskItem from '../TaskItem/TaskItem';
-import styles from './TaskList.module.css';
+import React, { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
+import TaskItem from "../TaskItem/TaskItem";
+import styles from "./TaskList.module.css";
 
 interface TaskListProps {
-  filter: 'All' | 'Completed' | 'Incomplete';
+  filter: "All" | "Completed" | "Incomplete";
   searchQuery: string;
 }
 
@@ -12,12 +12,15 @@ const TaskList: React.FC<TaskListProps> = ({ filter, searchQuery }) => {
   const { tasks } = useContext(TaskContext)!;
 
   const filteredTasks = tasks
-    .filter((task) =>
-      task.text.toLowerCase().includes(searchQuery.toLowerCase())
-    )
     .filter((task) => {
-      if (filter === 'Completed') return task.completed;
-      if (filter === 'Incomplete') return !task.completed;
+      if (!searchQuery) {
+        return true;
+      }
+      return task.text.toLowerCase().includes(searchQuery.toLowerCase());
+    })
+    .filter((task) => {
+      if (filter === "Completed") return task.completed;
+      if (filter === "Incomplete") return !task.completed;
       return true;
     });
 
