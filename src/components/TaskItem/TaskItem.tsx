@@ -17,7 +17,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
   const [timeLeft, setTimeLeft] = useState<number>(5);
 
   useEffect(() => {
-    if (deletedTask && deletedTask.index === index + 1) {
+    if (deletedTask && deletedTask.index === index) {
       const timer = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev > 0) {
@@ -64,23 +64,18 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
         {task.text}
       </span>
       <div className={styles.actions}>
-        <button
-          onClick={() => setIsEditing(true)}
-          className={styles.editButton}
-        >
+        <button onClick={() => setIsEditing(true)} className={styles.editButton}>
           <FaEdit />
         </button>
         <button onClick={handleDelete} className={styles.deleteButton}>
           <FaTrash />
         </button>
       </div>
-
-      {deletedTask && deletedTask.index === index + 1 && (
+      {deletedTask && deletedTask.index === index && (
         <button onClick={restoreTask} className={styles.undoButton}>
-          UNDO {timeLeft}
+          Task Deleted UNDO {timeLeft}
         </button>
       )}
-
       <Modal
         isOpen={isEditing}
         onClose={() => setIsEditing(false)}

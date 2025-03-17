@@ -25,6 +25,8 @@ h2 {
   max-width: 400px;
   height: 250px;
   position: relative;
+  background-color: var(--modal-background);
+  color: var(--modal-text);
 }
 
 .buttonContainer {

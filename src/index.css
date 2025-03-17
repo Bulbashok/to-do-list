@@ -1,14 +1,51 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+body.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --input-background: #f0f0f0;
+  --input-text: #333333;
+  --modal-background: #ffffff;
+  --modal-text: #000000;
+}
+
+body.dark {
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --input-background: #444444;
+  --input-text: #ffffff;
+  --modal-background: #555555;
+  --modal-text: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+input,
+textarea,
+select {
+  background-color: var(--input-background);
+  color: var(--input-text);
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+}
+
+.modal {
+  background-color: var(--modal-background);
+  color: var(--modal-text);
+  padding: 20px;
+  border-radius: 8px;
+}

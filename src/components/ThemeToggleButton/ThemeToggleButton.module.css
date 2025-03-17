@@ -1,13 +1,13 @@
 .themeToggleButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-  }
+  width: 50px;
+  height: 40px;
+  font-size: 12px;
+  background-color: #218838;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
   
   .themeToggleButton:hover {
     opacity: 0.8;

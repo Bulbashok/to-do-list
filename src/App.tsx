@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import styles from "./App.module.css";
 import TaskList from "./components/TaskList/TaskList";
 import { TaskProvider } from "./context/TaskContext";
 import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
-// import { ThemeContext } from "./context/ThemeContext";
-// import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
+import { ThemeContext } from "./context/ThemeContext";
+import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
 
 const App: React.FC = () => {
   const [filter, setFilter] = useState<"All" | "Completed" | "Incomplete">("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-  // const { isDarkMode } = useContext(ThemeContext)!;
+  const { isDarkMode } = useContext(ThemeContext)!;
 
   const handleFilterChange = (newFilter: "All" | "Completed" | "Incomplete") => {
     setFilter(newFilter);
@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   return (
     <TaskProvider>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${isDarkMode ? styles.dark : styles.light}`}>
         <h1 className={styles.title}>TODO LIST</h1>
         <div className={styles.wrapper}>
           <input
@@ -41,7 +41,7 @@ const App: React.FC = () => {
               </div>
             )}
           </div>
-          {/* <ThemeToggleButton/> */}
+          <ThemeToggleButton/>
         </div>
         <TaskList filter={filter} searchQuery={searchQuery} />
         <AddTaskForm />

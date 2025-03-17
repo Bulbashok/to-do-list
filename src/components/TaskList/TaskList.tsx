@@ -11,18 +11,14 @@ interface TaskListProps {
 const TaskList: React.FC<TaskListProps> = ({ filter, searchQuery }) => {
   const { tasks } = useContext(TaskContext)!;
 
-  const filteredTasks = tasks
-    .filter((task) => {
-      if (!searchQuery) {
-        return true;
-      }
-      return task.text.toLowerCase().includes(searchQuery.toLowerCase());
-    })
-    .filter((task) => {
-      if (filter === "Completed") return task.completed;
-      if (filter === "Incomplete") return !task.completed;
-      return true;
-    });
+  const filteredTasks = tasks.filter((task) => {
+    if (searchQuery && !task.text.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    if (filter === "Completed") return task.completed;
+    if (filter === "Incomplete") return !task.completed;
+    return true;
+  });
 
   return (
     <ul className={styles.taskList}>
