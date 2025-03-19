@@ -1,10 +1,10 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import styles from "./App.module.css";
 import TaskList from "./components/TaskList/TaskList";
 import { TaskProvider } from "./context/TaskContext";
 import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
 import { ThemeContext } from "./context/ThemeContext";
-import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
+import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton";
 
 const App: React.FC = () => {
   const [filter, setFilter] = useState<"All" | "Completed" | "Incomplete">("All");
@@ -31,7 +31,7 @@ const App: React.FC = () => {
           />
           <div className={styles.filterContainer}>
             <button onClick={() => setIsFilterOpen(!isFilterOpen)} className={styles.filterButton}>
-            {filter.toUpperCase()}
+              {filter.toUpperCase()}
             </button>
             {isFilterOpen && (
               <div className={styles.filterDropdown}>
@@ -41,7 +41,7 @@ const App: React.FC = () => {
               </div>
             )}
           </div>
-          <ThemeToggleButton/>
+          <ThemeToggleButton />
         </div>
         <TaskList filter={filter} searchQuery={searchQuery} />
         <AddTaskForm />

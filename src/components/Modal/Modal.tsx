@@ -5,7 +5,7 @@ interface ModalProps {
   isOpen: boolean;
   isEditing: boolean;
   onClose: () => void;
-  onSave: () => void
+  onSave: () => void;
   children: React.ReactNode;
 }
 

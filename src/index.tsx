@@ -12,6 +12,6 @@ if (rootElem) {
   root.render(
     <ThemeProvider>
       <App />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 }
