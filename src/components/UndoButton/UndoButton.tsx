@@ -7,6 +7,7 @@ function UndoButton() {
   const { restoreTask, deletedTask } = useContext(TaskContext)!;
 
   useEffect(() => {
+    setTimeLeft(5);
     if (!deletedTask) return;
 
     const timer = setInterval(() => {
