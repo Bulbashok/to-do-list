@@ -3,7 +3,9 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .title.light {
@@ -82,14 +84,18 @@
 .app {
   min-height: 100vh;
   padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .container {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .searchInput {
@@ -98,4 +104,12 @@
   border: 1px solid var(--text-color);
   padding: 8px;
   border-radius: 4px;
+}
+
+.buttonsContainer {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

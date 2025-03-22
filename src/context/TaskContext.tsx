@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, useState, ReactNode, useEffect, useMemo, useCallback } from "react";
 
 interface Task {
   text: string;
@@ -60,14 +60,14 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     setTasks(newTasks);
   };
 
-  const restoreTask = () => {
+  const restoreTask = useCallback(() => {
     if (deletedTask) {
       const newTasks = [...tasks];
       newTasks.splice(deletedTask.index, 0, deletedTask.task);
       setTasks(newTasks);
       setDeletedTask(null);
     }
-  };
+  }, [deletedTask, tasks]);
 
   const toggleTaskCompletion = (index: number) => {
     const newTasks = [...tasks];
@@ -75,20 +75,17 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     setTasks(newTasks);
   };
 
-  return (
-    <TaskContext.Provider
-      value={{
-        tasks,
-        addTask,
-        deleteTask,
-        editTask,
-        restoreTask,
-        toggleTaskCompletion,
-        deletedTask,
-      }}
-    >
-      {children}
-    </TaskContext.Provider>
-  );
-};
+  const value = useMemo(() => {
+    return {
+      tasks,
+      addTask,
+      deleteTask,
+      editTask,
+      restoreTask,
+      toggleTaskCompletion,
+      deletedTask,
+    };
+  }, [deleteTask, deletedTask, editTask, tasks, restoreTask, toggleTaskCompletion]);
 
+  return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
+};

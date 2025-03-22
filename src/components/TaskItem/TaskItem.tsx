@@ -10,34 +10,9 @@ interface TaskItemProps {
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
-  const { deleteTask, editTask, toggleTaskCompletion, restoreTask, deletedTask } =
-    useContext(TaskContext)!;
+  const { deleteTask, editTask, toggleTaskCompletion, deletedTask } = useContext(TaskContext)!;
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editedText, setEditedText] = useState<string>(task.text);
-  const [timeLeft, setTimeLeft] = useState<number>(5);
-
-  useEffect(() => {
-    if (deletedTask && deletedTask.index === index) {
-      const timer = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev > 0) {
-            return prev - 1;
-          } else {
-            clearInterval(timer);
-            return 0;
-          }
-        });
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }
-  }, [deletedTask, index]);
-
-  useEffect(() => {
-    if (!deletedTask) {
-      setTimeLeft(5);
-    }
-  }, [deletedTask]);
 
   const handleSave = () => {
     if (editedText.trim() === "") {
@@ -71,11 +46,6 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
           <FaTrash />
         </button>
       </div>
-      {deletedTask && deletedTask.index === index && (
-        <button onClick={restoreTask} className={styles.undoButton}>
-          Task Deleted UNDO {timeLeft}
-        </button>
-      )}
       <Modal
         isOpen={isEditing}
         onClose={() => setIsEditing(false)}
