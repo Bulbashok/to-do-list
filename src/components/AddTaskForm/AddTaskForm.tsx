@@ -3,7 +3,7 @@ import { TaskContext } from "../../context/TaskContext";
 import Modal from "../Modal/Modal";
 import styles from "./AddTaskForm.module.css";
 
-const AddTaskForm: React.FC = () => {
+const AddTaskForm = () => {
   const [taskText, setTaskText] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { addTask } = useContext(TaskContext)!;

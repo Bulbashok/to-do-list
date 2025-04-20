@@ -5,13 +5,12 @@ interface ModalProps {
   isOpen: boolean;
   isEditing: boolean;
   onClose: () => void;
-  onSave: () => void
+  onSave: () => void;
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSave, isEditing, children }) => {
+const Modal = ({ isOpen, onClose, onSave, isEditing, children }: ModalProps) => {
   if (!isOpen) return null;
-
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>

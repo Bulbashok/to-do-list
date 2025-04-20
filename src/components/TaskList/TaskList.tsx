@@ -8,7 +8,7 @@ interface TaskListProps {
   searchQuery: string;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ filter, searchQuery }) => {
+const TaskList = ({ filter, searchQuery }: TaskListProps) => {
   const { tasks } = useContext(TaskContext)!;
 
   const filteredTasks = tasks.filter((task) => {

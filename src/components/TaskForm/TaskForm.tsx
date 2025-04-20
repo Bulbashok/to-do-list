@@ -8,12 +8,12 @@ interface TaskFormProps {
   submitText?: string;
 }
 
-export const TaskForm: React.FC<TaskFormProps> = ({
-                                                    initialText = "",
-                                                    onSubmit,
-                                                    onCancel,
-                                                    submitText = "Submit"
-                                                  }) => {
+export const TaskForm = ({
+  initialText = "",
+  onSubmit,
+  onCancel,
+  submitText = "Submit",
+}: TaskFormProps) => {
   const [text, setText] = useState(initialText);
 
   const handleSubmit = (e: React.FormEvent) => {

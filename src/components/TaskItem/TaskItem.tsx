@@ -9,7 +9,7 @@ interface TaskItemProps {
   index: number;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, index }) => {
+const TaskItem = ({ task, index }: TaskItemProps) => {
   const { deleteTask, editTask, toggleTaskCompletion, deletedTask } = useContext(TaskContext)!;
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editedText, setEditedText] = useState<string>(task.text);

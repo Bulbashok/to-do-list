@@ -8,7 +8,7 @@ import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
 import UndoButton from "./components/UndoButton/UndoButton";
 import DropdownMenu from "./components/DropdownMenu/DropdownMenu";
 
-const App: React.FC = () => {
+const App = () => {
   const [filter, setFilter] = useState<"All" | "Completed" | "Incomplete">("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { isDarkMode } = useContext(ThemeContext)!;
