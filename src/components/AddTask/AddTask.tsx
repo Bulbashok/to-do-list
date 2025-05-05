@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { TaskContext } from "../../context/TaskContext";
 import Modal from "../Modal/Modal";
-import styles from "./AddTaskForm.module.css";
+import styles from "./AddTask.module.css";
 
-const AddTaskForm = () => {
+const AddTask = () => {
   const [taskText, setTaskText] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { addTask } = useContext(TaskContext)!;
@@ -14,6 +14,11 @@ const AddTaskForm = () => {
       setTaskText("");
       setIsModalOpen(false);
     }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
+    else if (e.key === "Escape") setIsModalOpen(false);
   };
 
   return (
@@ -34,8 +39,10 @@ const AddTaskForm = () => {
             type="text"
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Input your note..."
             className={styles.input}
+            autoFocus
           />
         </form>
       </Modal>
@@ -43,4 +50,4 @@ const AddTaskForm = () => {
   );
 };
 
-export default AddTaskForm;
+export default AddTask;

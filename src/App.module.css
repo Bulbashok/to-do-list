@@ -3,9 +3,7 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .title.light {
@@ -30,6 +28,11 @@
   border-radius: 4px;
   margin-bottom: 10px;
   background-color: #f9f9f9;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: 1px solid #707070;
 }
 
 .filterContainer {
@@ -72,7 +75,6 @@
   border: none;
   cursor: pointer;
   background-color: var(--background-color);
-
 }
 
 .filterDropdown button:hover {
@@ -88,18 +90,14 @@
 .app {
   min-height: 100vh;
   padding: 20px;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 20px;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .searchInput {

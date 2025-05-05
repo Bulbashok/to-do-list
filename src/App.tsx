@@ -2,18 +2,24 @@ import React, { useContext, useState } from "react";
 import styles from "./App.module.css";
 import TaskList from "./components/TaskList/TaskList";
 import { TaskProvider } from "./context/TaskContext";
-import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
+import AddTask from "./components/AddTask/AddTask";
 import { ThemeContext } from "./context/ThemeContext";
 import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton";
 import UndoButton from "./components/UndoButton/UndoButton";
 import DropdownMenu from "./components/DropdownMenu/DropdownMenu";
 
+enum Filter{
+  All = 'All',
+  Completed = 'Completed',
+  Incomplete = 'Incomplete',
+}
+
 const App = () => {
-  const [filter, setFilter] = useState<"All" | "Completed" | "Incomplete">("All");
+  const [filter, setFilter] = useState<Filter>(Filter.All);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { isDarkMode } = useContext(ThemeContext)!;
 
-  const handleFilterChange = (newFilter: "All" | "Completed" | "Incomplete") => {
+  const handleFilterChange = (newFilter: Filter) => {
     setFilter(newFilter);
   };
 
@@ -32,9 +38,9 @@ const App = () => {
           <DropdownMenu
             trigger={<button className={styles.filterButton}>{filter.toUpperCase()}</button>}
           >
-            <button onClick={() => handleFilterChange("All")}>All</button>
-            <button onClick={() => handleFilterChange("Completed")}>Completed</button>
-            <button onClick={() => handleFilterChange("Incomplete")}>Incomplete</button>
+            <button onClick={() => handleFilterChange(Filter.All)}>All</button>
+            <button onClick={() => handleFilterChange(Filter.Completed)}>Completed</button>
+            <button onClick={() => handleFilterChange(Filter.Incomplete)}>Incomplete</button>
           </DropdownMenu>
           <ThemeToggleButton />
         </div>
@@ -43,7 +49,7 @@ const App = () => {
           <div>
             <UndoButton />
           </div>
-          <AddTaskForm />
+          <AddTask />
         </div>
       </div>
     </TaskProvider>

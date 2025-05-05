@@ -10,6 +10,7 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, onSave, isEditing, children }: ModalProps) => {
+
   if (!isOpen) return null;
   return (
     <div className={styles.modalOverlay}>
@@ -29,3 +30,24 @@ const Modal = ({ isOpen, onClose, onSave, isEditing, children }: ModalProps) => 
 };
 
 export default Modal;
+
+
+// interface ModalProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+//   children: React.ReactNode;
+// }
+//
+// const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+//   if (!isOpen) return null;
+//
+//   return (
+//     <div className={styles.modalOverlay} onClick={onClose}>
+//       <div className={styles.modal}>
+//         {children}
+//       </div>
+//     </div>
+//   );
+// };
+//
+// export default Modal;
