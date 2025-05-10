@@ -32,27 +32,29 @@ const AddTask = ({ title, initialTaskText = "", onSave, onCancel }: Props) => {
   };
 
   return (
-    <>
-      <h2>{title}</h2>
-      <form onSubmit={handleSubmit} className={styles.modalForm}>
-        <input
-          type="text"
-          value={taskText}
-          onChange={(e) => setTaskText(e.target.value)}
-          placeholder="Input your note..."
-          className={styles.input}
-          autoFocus
-        />
-        <div className={styles.buttonContainer}>
-          <button type="button" className={styles.cancelButton} onClick={handleCancel}>
-            CANCEL
-          </button>
-          <button type="submit" className={styles.applyButton}>
-            APPLY
-          </button>
-        </div>
-      </form>
-    </>
+    <div className={styles.modalContainer}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+        <form onSubmit={handleSubmit} className={styles.modalForm}>
+          <input
+            type="text"
+            value={taskText}
+            onChange={(e) => setTaskText(e.target.value)}
+            placeholder="Input your note..."
+            className={styles.input}
+            autoFocus
+          />
+        </form>
+      </div>
+      <div className={styles.buttonContainer}>
+        <button type="button" className={styles.cancelButton} onClick={handleCancel}>
+          CANCEL
+        </button>
+        <button type="submit" className={styles.applyButton}>
+          APPLY
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -89,10 +89,10 @@ const App = () => {
       />
       <div className={styles.buttonsContainer}>
         <div>{deletedTask && <UndoButton restoreTask={restoreTask} />}</div>
+        <button onClick={openModal} className={styles.addTaskButton}>
+          +
+        </button>
       </div>
-      <button onClick={openModal} className={styles.addTaskButton}>
-        +
-      </button>
       <Modal isOpen={isOpen} onClose={closeTaskModal}>
         <AddTask
           title={editingTask ? "EDIT TASK" : "ADD TASK"}

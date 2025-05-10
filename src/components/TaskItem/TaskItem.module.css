@@ -5,6 +5,7 @@
   padding: 10px;
   border-bottom: 2px solid green;
   margin-bottom: 10px;
+  max-width: 520px;
 }
 
 .checkbox {
@@ -16,6 +17,8 @@
 .taskText {
   flex: 1;
   margin-right: 10px;
+  word-wrap: break-word;
+  max-width: 350px;
 }
 
 .completed {
@@ -23,17 +26,8 @@
   color: #888;
 }
 
-.taskText {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.editInput {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 10px;
+.actions {
+  display: flex;
 }
 
 .editButton {
@@ -51,21 +45,6 @@
   background-color: #e0a800;
 }
 
-.saveButton {
-  padding: 5px 10px;
-  font-size: 14px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 5px;
-}
-
-.saveButton:hover {
-  background-color: #218838;
-}
-
 .deleteButton {
   padding: 5px 10px;
   font-size: 14px;
@@ -79,4 +58,3 @@
 .deleteButton:hover {
   background-color: #c82333;
 }
-
