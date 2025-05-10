@@ -1,4 +1,12 @@
-import React, { createContext, useState, ReactNode, useEffect, useMemo, useCallback } from "react";
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useCallback,
+  useContext,
+} from "react";
 
 interface Task {
   text: string;
@@ -15,7 +23,17 @@ interface TaskContextType {
   deletedTask: { index: number; task: Task } | null;
 }
 
-export const TaskContext = createContext<TaskContextType | undefined>(undefined);
+const initialState: TaskContextType = {
+  tasks: [],
+  addTask: () => undefined,
+  deleteTask: () => undefined,
+  editTask: () => undefined,
+  restoreTask: () => undefined,
+  toggleTaskCompletion: (index: number) => undefined,
+  deletedTask: null,
+};
+
+export const TaskContext = createContext<TaskContextType>(initialState);
 
 interface TaskProviderProps {
   children: ReactNode;
@@ -89,3 +107,5 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
+
+export const useTaskContext = () => useContext(TaskContext);

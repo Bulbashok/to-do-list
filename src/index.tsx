@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
+import { TaskProvider } from "./context/TaskContext";
 
 const rootElem = document.getElementById("root");
 
@@ -11,7 +12,9 @@ if (rootElem) {
 
   root.render(
     <ThemeProvider>
-      <App />
+      <TaskProvider>
+        <App />
+      </TaskProvider>
     </ThemeProvider>
   );
 }

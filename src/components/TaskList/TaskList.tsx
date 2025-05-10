@@ -1,29 +1,25 @@
-import React, { useContext } from "react";
-import { TaskContext } from "../../context/TaskContext";
 import TaskItem from "../TaskItem/TaskItem";
 import styles from "./TaskList.module.css";
+import { Task } from "../../types/Task";
 
 interface TaskListProps {
-  filter: "All" | "Completed" | "Incomplete";
-  searchQuery: string;
+  tasks: Task[];
+  onDelete: (index: number) => void;
+  onEdit: (index: number) => void;
+  onToggle: (index: number) => void;
 }
 
-const TaskList = ({ filter, searchQuery }: TaskListProps) => {
-  const { tasks } = useContext(TaskContext)!;
-
-  const filteredTasks = tasks.filter((task) => {
-    if (searchQuery && !task.text.toLowerCase().includes(searchQuery.toLowerCase())) {
-      return false;
-    }
-    if (filter === "Completed") return task.completed;
-    if (filter === "Incomplete") return !task.completed;
-    return true;
-  });
-
+const TaskList = ({ tasks, onDelete, onEdit, onToggle }: TaskListProps) => {
   return (
     <ul className={styles.taskList}>
-      {filteredTasks.map((task, index) => (
-        <TaskItem key={index} task={task} index={index} />
+      {tasks.map((task, index) => (
+        <TaskItem
+          key={index}
+          task={task}
+          onDelete={() => onDelete(index)}
+          onEdit={() => onEdit(index)}
+          onToggle={() => onToggle(index)}
+        />
       ))}
     </ul>
   );
