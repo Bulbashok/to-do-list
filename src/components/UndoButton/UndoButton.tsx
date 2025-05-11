@@ -1,7 +1,5 @@
 import { memo, useContext, useEffect, useState } from "react";
 import styles from "./UndoButton.module.css";
-import { TaskContext } from "../../context/TaskContext";
-import { Task } from "../../types/Task";
 
 type Props = {
   restoreTask: () => void;
@@ -29,7 +27,7 @@ function UndoButton({ restoreTask }: Props) {
 
   return (
     <button onClick={restoreTask} className={styles.undoButton}>
-      Task Deleted UNDO {timeLeft}
+      {timeLeft} UNDO ↺
     </button>
   );
 }

@@ -62,18 +62,21 @@ const App = () => {
   };
 
   return (
-    <div className={`${styles.container} ${isDarkMode ? styles.dark : styles.light}`}>
-      <h1 className={styles.title}>TODO LIST</h1>
-      <div className={styles.wrapper}>
-        <input
-          type="text"
-          placeholder="Search note..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={styles.searchInput}
-        />
+    <div className={`${styles.appContainer} ${isDarkMode ? styles.themeDark : styles.themeLight}`}>
+      <h1 className={styles.appTitle}>TODO LIST</h1>
+      <div className={styles.searchContainer}>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search note..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.searchField}
+          />
+          <span className={styles.searchIcon}>🔍︎</span>
+        </div>
         <DropdownMenu
-          trigger={<button className={styles.filterButton}>{filter.toUpperCase()}</button>}
+          trigger={<button className={styles.filterBtn}>{filter.toUpperCase()}</button>}
         >
           <button onClick={() => handleFilterChange(Filter.All)}>All</button>
           <button onClick={() => handleFilterChange(Filter.Completed)}>Completed</button>
@@ -87,9 +90,10 @@ const App = () => {
         onEdit={handleEditTask}
         onToggle={toggleTaskCompletion}
       />
-      <div className={styles.buttonsContainer}>
+
+      <div className={styles.actionsBar}>
         <div>{deletedTask && <UndoButton restoreTask={restoreTask} />}</div>
-        <button onClick={openModal} className={styles.addTaskButton}>
+        <button onClick={openModal} className={styles.addBtn}>
           +
         </button>
       </div>

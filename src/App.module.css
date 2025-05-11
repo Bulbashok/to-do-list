@@ -1,55 +1,48 @@
-.container {
+.appContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 750px;
   margin: 0 auto;
-  text-align: center;
-  background-color: var(--background-color);
-  color: var(--text-color);
   padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
   min-height: 700px;
 }
 
-.title.light {
+.appTitle {
   font-size: 32px;
-  color: #333;
   margin-bottom: 20px;
 }
 
-.title.dark {
-  font-size: 32px;
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-.searchInput {
-  width: 600px;
+.searchContainer {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   align-items: center;
-  padding: 11px;
+  position: relative;
+}
+
+.searchField {
+  flex-grow: 1;
+  padding: 11px 35px 11px 11px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  outline: none; 
 }
 
-.searchInput:focus {
-  outline: none;
-  border: 1px solid #707070;
+.searchField:focus {
+  border: 1px solid #4a4a4a;
 }
 
-.filterContainer {
-  position: relative;
-  margin-bottom: 20px;
+.searchIcon {
+  position: absolute;
+  right: 15px;
+  pointer-events: none;
+  font-size: 21px;
 }
 
-.filterButton {
-  width: 90px;
+.filterBtn {
+  width: 100px;
   height: 40px;
-  font-size: 12px;
   background-color: #218838;
   color: white;
   border: none;
@@ -57,73 +50,21 @@
   cursor: pointer;
 }
 
-.filterButton:hover {
-  background-color: #1b6b2c;
-}
-
-.filterDropdown {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.filterDropdown button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
-  background-color: var(--background-color);
-}
-
-.filterDropdown button:hover {
-  background-color: #f8f9fa;
-}
-
-.wrapper {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.app {
-  min-height: 100vh;
-  padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.searchInput {
-  background-color: var(--input-background);
-  color: var(--input-text);
-}
-
-.buttonsContainer {
-  width: 100%;
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.addTaskButton {
+.addBtn {
+  width: 50px;
+  height: 50px;
   font-size: 36px;
   background-color: #218838;
   color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  height: 50px;
-  width: 50px;
 }
 
-.addTaskButton:hover {
-  background-color: #1b692c;
+.actionsBar {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-

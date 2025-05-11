@@ -10,6 +10,14 @@ interface TaskListProps {
 }
 
 const TaskList = ({ tasks, onDelete, onEdit, onToggle }: TaskListProps) => {
+  if (!tasks || tasks.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <img src="/images/empty.svg" alt="Нет задач" className={styles.emptyImage} />
+        <p>Empty...</p>
+      </div>
+    );
+  }
   return (
     <ul className={styles.taskList}>
       {tasks.map((task, index) => (

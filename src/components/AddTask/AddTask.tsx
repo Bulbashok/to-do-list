@@ -15,9 +15,12 @@ const AddTask = ({ title, initialTaskText = "", onSave, onCancel }: Props) => {
     setTaskText("");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    saveTask();
+  };
 
+  const saveTask = () => {
     const value = taskText.trim();
 
     if (!value) return;
@@ -50,7 +53,7 @@ const AddTask = ({ title, initialTaskText = "", onSave, onCancel }: Props) => {
         <button type="button" className={styles.cancelButton} onClick={handleCancel}>
           CANCEL
         </button>
-        <button type="submit" className={styles.applyButton}>
+        <button type="submit" className={styles.applyButton} onClick={handleSubmit}>
           APPLY
         </button>
       </div>

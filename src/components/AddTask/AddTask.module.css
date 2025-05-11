@@ -14,7 +14,7 @@
 }
 
 .title {
-  margin: 0;
+  margin: auto
 }
 
 .modalForm {
@@ -27,8 +27,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
-  max-width: 460px;
-
+  max-width: 480px;
 }
 
 .input:focus {
