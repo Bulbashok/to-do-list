@@ -9,7 +9,6 @@ interface TaskItemProps {
 }
 
 const TaskItem = ({ task, onDelete, onEdit, onToggle }: TaskItemProps) => {
-  
   return (
     <li className={styles.taskItem}>
       <input

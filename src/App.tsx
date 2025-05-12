@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styles from "./App.module.css";
 import TaskList from "./components/TaskList/TaskList";
-import { useTaskContext } from "./context/TaskContext";
+import { useTasks } from "./hooks/useTasks";
 import AddTask from "./components/AddTask/AddTask";
 import { ThemeContext } from "./context/ThemeContext";
 import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton";
@@ -9,20 +9,15 @@ import UndoButton from "./components/UndoButton/UndoButton";
 import DropdownMenu from "./components/DropdownMenu/DropdownMenu";
 import Modal from "./components/Modal/Modal";
 import useModal from "./hooks/useModal";
-
-enum Filter {
-  All = "All",
-  Completed = "Completed",
-  Incomplete = "Incomplete",
-}
+import { Filter } from "./types/filter.enum";
 
 const App = () => {
   const [filter, setFilter] = useState<Filter>(Filter.All);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { isDarkMode } = useContext(ThemeContext)!;
   const { isOpen, closeModal, openModal } = useModal();
-  const { addTask, tasks, deleteTask, editTask, toggleTaskCompletion, restoreTask, deletedTask } =
-    useTaskContext();
+  const { tasks, addTask, deleteTask, editTask, toggleTaskCompletion, restoreTask, deletedTasks } =
+    useTasks();
   const [editingTask, setEditingTask] = useState<{ index: number; text: string } | undefined>(
     undefined
   );
@@ -92,7 +87,9 @@ const App = () => {
       />
 
       <div className={styles.actionsBar}>
-        <div>{deletedTask && <UndoButton restoreTask={restoreTask} />}</div>
+        <div className={styles.undoButtonCountainer}>
+          {deletedTasks && <UndoButton deletedTasks={deletedTasks} restoreTask={restoreTask} />}
+        </div>
         <button onClick={openModal} className={styles.addBtn}>
           +
         </button>

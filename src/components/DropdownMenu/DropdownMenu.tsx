@@ -20,9 +20,7 @@ const DropdownMenu = ({ trigger, children }: DropdownMenuProps) => {
       {isOpen && (
         <>
           <div className={styles.overlay} onClick={closeMenu} />
-          <div className={styles.menu}>
-            {children}
-          </div>
+          <div className={styles.menu}>{children}</div>
         </>
       )}
     </div>

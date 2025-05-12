@@ -1,9 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
-import { TaskProvider } from "./context/TaskContext";
 
 const rootElem = document.getElementById("root");
 
@@ -12,9 +10,9 @@ if (rootElem) {
 
   root.render(
     <ThemeProvider>
-      <TaskProvider>
-        <App />
-      </TaskProvider>
+      <App />
     </ThemeProvider>
   );
+} else {
+  console.warn("root element is not found");
 }

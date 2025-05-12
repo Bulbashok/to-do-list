@@ -1,35 +1,29 @@
-import { memo, useContext, useEffect, useState } from "react";
 import styles from "./UndoButton.module.css";
+import { Task } from "../../types/task.model";
 
 type Props = {
-  restoreTask: () => void;
+  deletedTasks: {
+    id: string;
+    index: number;
+    task: Task;
+    timer: number;
+  }[];
+  restoreTask: (id: string) => void;
 };
 
-function UndoButton({ restoreTask }: Props) {
-  const [timeLeft, setTimeLeft] = useState<number>(5);
-
-  useEffect(() => {
-    setTimeLeft(5);
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev > 0) {
-          return prev - 1;
-        } else {
-          clearInterval(timer);
-          return 0;
-        }
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+function UndoButton({ deletedTasks, restoreTask }: Props) {
   return (
-    <button onClick={restoreTask} className={styles.undoButton}>
-      {timeLeft} UNDO ↺
-    </button>
+    <>
+      {deletedTasks.map((deletedTask) => (
+        <button
+          key={deletedTask.id}
+          onClick={() => restoreTask(deletedTask.id)}
+          className={styles.undoButton}
+        >
+          {deletedTask.timer} UNDO ↺
+        </button>
+      ))}
+    </>
   );
 }
-
 export default UndoButton;

@@ -9,8 +9,8 @@
 }
 
 .checkbox {
-  margin-right: 10px;
-  transform: scale(2);
+  margin-right: 5px;
+  transform: scale(1.7);
   cursor: pointer;
   accent-color: #218838;
   filter: var(--checkbox-filter);
@@ -22,6 +22,7 @@
   margin-right: 10px;
   word-wrap: break-word;
   max-width: 350px;
+  font-size: 20px;
 }
 
 .completed {
@@ -34,7 +35,7 @@
 }
 
 .editButton {
-  font-size: 18px;
+  font-size: 20px;
   background-color: transparent;
   color: rgb(173, 173, 173);
   border: none;
@@ -48,7 +49,7 @@
 }
 
 .deleteButton {
-  font-size: 18px;
+  font-size: 20px;
   background-color: transparent;
   color: rgb(173, 173, 173);
   border: none;
