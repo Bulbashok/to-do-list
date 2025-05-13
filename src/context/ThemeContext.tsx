@@ -1,5 +1,6 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, ReactNode } from "react";
 import { Theme } from "../types/theme.enum";
+import { useStateWithLocalStorage } from "../hooks/useStateWithLocalStorage";
 
 interface ThemeContextType {
   isDarkMode: boolean;
@@ -13,21 +14,23 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme === Theme.dark;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
-
-  useEffect(() => {
-    const theme = isDarkMode ? Theme.dark : Theme.light;
-    localStorage.setItem("theme", theme);
-    document.body.className = theme;
-  }, [isDarkMode]);
+  const [isDarkMode, setIsDarkMode] = useStateWithLocalStorage<boolean>(
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
+    "theme",
+    (value: string) => value === Theme.dark, // Парсим строку в boolean
+    (value: boolean) => (value ? Theme.dark : Theme.light) // Сериализуем boolean в строку
+  );
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
+  React.useEffect(() => {
+    const theme = isDarkMode ? Theme.dark : Theme.light;
+    document.body.className = theme;
+  }, [isDarkMode]);
+
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
