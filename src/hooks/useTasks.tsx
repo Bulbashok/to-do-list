@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useStateWithLocalStorage } from "./useStateWithLocalStorage";
 
 interface Task {
   text: string;
@@ -13,16 +14,9 @@ interface DeletedTask {
 }
 
 export const useTasks = () => {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
+  const [tasks, setTasks] = useStateWithLocalStorage<Task[]>("tasks", []);
 
   const [deletedTasks, setDeletedTasks] = useState<DeletedTask[]>([]);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
 
   useEffect(() => {
     const interval = setInterval(() => {

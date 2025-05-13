@@ -15,10 +15,10 @@ interface ThemeProviderProps {
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useStateWithLocalStorage<boolean>(
-    window.matchMedia("(prefers-color-scheme: dark)").matches,
     "theme",
-    (value: string) => value === Theme.dark, // Парсим строку в boolean
-    (value: boolean) => (value ? Theme.dark : Theme.light) // Сериализуем boolean в строку
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
+    (value: string) => value === Theme.dark,
+    (value: boolean) => (value ? Theme.dark : Theme.light)
   );
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
@@ -29,8 +29,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   }, [isDarkMode]);
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>{children}</ThemeContext.Provider>
   );
 };

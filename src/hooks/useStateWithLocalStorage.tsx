@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 export const useStateWithLocalStorage = <T,>(
-  initialState: T,
   localStorageKey: string,
+  initialState: T,
   parseFn?: (value: string) => T,
   stringifyFn?: (value: T) => string
 ): [T, React.Dispatch<React.SetStateAction<T>>] => {
