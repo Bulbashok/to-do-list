@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from "react";
+import React, { createContext, ReactNode, useEffect } from "react";
 import { Theme } from "../types/theme.enum";
 import { useStateWithLocalStorage } from "../hooks/useStateWithLocalStorage";
 
@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const theme = isDarkMode ? Theme.dark : Theme.light;
     document.body.className = theme;
   }, [isDarkMode]);
