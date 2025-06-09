@@ -1,0 +1,13 @@
+.undoButton {
+  background-color: #218838;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.undoButton:hover {
+  background-color: #175f27;
+}
