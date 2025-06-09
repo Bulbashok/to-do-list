@@ -35,7 +35,7 @@ const App = () => {
     setFilter(newFilter);
   };
 
-  const onSaveTask = (value: string) => {
+  const handleSaveTask = (value: string) => {
     if (editingTask) {
       editTask(editingTask.index, value);
     } else {
@@ -98,7 +98,7 @@ const App = () => {
         <AddTask
           title={editingTask ? "EDIT TASK" : "ADD TASK"}
           initialTaskText={editingTask?.text}
-          onSave={onSaveTask}
+          onSave={handleSaveTask}
           onCancel={closeTaskModal}
         />
       </Modal>
