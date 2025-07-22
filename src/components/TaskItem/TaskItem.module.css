@@ -1,0 +1,62 @@
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid green;
+  margin-bottom: 10px;
+  max-width: 520px;
+}
+
+.checkbox {
+  margin-right: 5px;
+  transform: scale(1.7);
+  cursor: pointer;
+  accent-color: #218838;
+  filter: var(--checkbox-filter);
+  transition: filter 0.3s ease;
+}
+
+.taskText {
+  flex: 1;
+  margin-right: 10px;
+  word-wrap: break-word;
+  max-width: 350px;
+  font-size: 20px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.actions {
+  display: flex;
+}
+
+.editButton {
+  font-size: 20px;
+  background-color: transparent;
+  color: rgb(173, 173, 173);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.editButton:hover {
+  color: #888;
+}
+
+.deleteButton {
+  font-size: 20px;
+  background-color: transparent;
+  color: rgb(173, 173, 173);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  color: #888;
+}
