@@ -1,6 +1,8 @@
 # ToDo List приложение на React + TypeScript
 
 Простое и удобное приложение для управления задачами с возможностью добавления, редактирования и фильтрации задач.
+<img width="2049" height="1033" alt="image" src="https://github.com/user-attachments/assets/7b730faa-d6c6-4352-8bdf-74aa072a2c9f" />
+
 
 ## Функционал
 
